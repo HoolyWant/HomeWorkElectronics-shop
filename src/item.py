@@ -22,6 +22,7 @@ class Item:
         self.quantity = quantity
         self.all.append(self)
 
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -56,6 +57,7 @@ class Item:
 
     @name.setter
     def name(self, name):
-        self.__name = name
         if len(self.__name) > 10:
             raise Exception('Длина наименования товара превышает 10 символов.')
+        else:
+            self.__name = name
