@@ -5,12 +5,14 @@ import pytest
 
 @pytest.fixture
 def test_item():
-    return Item('Phone', 5000, 10)
+    a = Item('Phone', 5000, 10)
+    return a
 
 
 @pytest.fixture
 def test_item2():
-    return Item('Dog', '2', 0)
+    a = Item('Dog', '2', 0)
+    return a
 
 
 def test_correct_datas(test_item2):
@@ -43,4 +45,9 @@ def test_set_name():
 def test_instantiate_from_csv():
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
+
+def test_repr_str():
+    test_item4 = Item('Freezer', 20000, 15)
+    assert repr(test_item4) == "Item('Freezer', 20000, 15)"
+    assert str(test_item4) == 'Freezer'
 
