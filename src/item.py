@@ -64,10 +64,10 @@ class Item:
     def name(self, name):
         if len(name) > 10:
             raise Exception('Длина наименования товара превышает 10 символов.')
-        else:
-            self.__name = name
+        self.__name = name
 
     def __add__(self, other):
-        if isinstance(other, Item):
-            return self.quantity + other.quantity
-        raise ValueError('Складывать можно только объекты Item или дочерние от них')
+        if not isinstance(other, Item):
+            raise ValueError('Складывать можно только объекты Item или дочерние от них')
+        return self.quantity + other.quantity
+
