@@ -1,11 +1,18 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
+from src.phone import Phone
 import pytest
 
 
 @pytest.fixture
 def test_item():
     a = Item('Phone', 5000, 10)
+    return a
+
+
+@pytest.fixture
+def test_phone():
+    a = Phone('iPhone 14', 120000, 5, 2)
     return a
 
 
@@ -37,17 +44,36 @@ def test_string_to_number():
 
 
 def test_set_name():
+    test_item3 = Item('BigGun', 1000000, 1)
     with pytest.raises(Exception):
-        test_item3 = Item('BigGun', 1000000, 1)
         test_item3.name('BigFuckingGun')
+    test_item3.name = 'IggyPop'
+    assert test_item3.name == 'IggyPop'
+
+
+def test_set_number_of_sim():
+    a = Phone('iPhone 14', 120000, 5, 2)
+    with pytest.raises(ValueError):
+        a.number_of_sim = -1
+    with pytest.raises(ValueError):
+        a.number_of_sim = 0
 
 
 def test_instantiate_from_csv():
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
 
-def test_repr_str():
+
+def test_repr_str_add():
     test_item4 = Item('Freezer', 20000, 15)
+    test_phone = Phone('iPhone 14', 120000, 5, 2)
     assert repr(test_item4) == "Item('Freezer', 20000, 15)"
     assert str(test_item4) == 'Freezer'
+    assert repr(test_phone) == "Phone('iPhone 14', 120000, 5, 2)"
+    assert str(test_phone) == 'iPhone 14'
+    assert test_item4 + test_phone == 20
+    assert test_phone + test_phone == 10
+    assert test_item4 + test_item4 == 30
+
+
 
