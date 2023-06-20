@@ -71,3 +71,21 @@ class Item:
             raise ValueError('Складывать можно только объекты Item или дочерние от них')
         return self.quantity + other.quantity
 
+
+class MixinLanguage:
+    __language = 'EN'
+
+    def __init__(self, name: str, price: float, quantity: int):
+        super().__init__(name, price, quantity)
+
+    def change_lang(self):
+        if self.__language == 'EN':
+            self.__language = 'RU'
+        else:
+            self.__language = 'EN'
+        return self
+
+    @property
+    def language(self):
+        return self.__language
+
