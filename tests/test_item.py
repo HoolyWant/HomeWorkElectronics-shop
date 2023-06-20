@@ -1,6 +1,7 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
 from src.phone import Phone
+from src.keyboard import KeyBoard
 import pytest
 
 
@@ -75,5 +76,14 @@ def test_repr_str_add():
     assert test_phone + test_phone == 10
     assert test_item4 + test_item4 == 30
 
+def test_keyboard():
+    test_kb = KeyBoard("Logitech 777", 10000, 16)
+    assert test_kb.language == 'EN'
+    test_kb.change_lang()
+    assert test_kb.language == 'RU'
 
+    with pytest.raises(AttributeError):
+        test_kb.language = 'UA'
 
+    assert str(test_kb) == "Logitech 777"
+    assert repr(test_kb) == "KeyBoard('Logitech 777', 10000, 16)"
