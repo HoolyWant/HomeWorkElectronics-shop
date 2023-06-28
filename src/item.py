@@ -1,5 +1,6 @@
 import csv
 import os.path
+import pathlib
 
 
 class InstantiateCSVError(Exception):
@@ -64,7 +65,7 @@ class Item:
                     name, price, quantity = row['name'], float(row['price']), int(row['quantity'])
                     cls(name, price, quantity)
         except FileNotFoundError:
-            print('Отсутствует файл item.csv')
+            print(f'Отсутствует файл {custom_file}')
         except (TypeError, KeyError):
             raise InstantiateCSVError
 
