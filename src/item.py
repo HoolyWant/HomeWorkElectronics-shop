@@ -54,9 +54,9 @@ class Item:
         self.price *= self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls, custom_file='items.csv'):
         cls.all.clear()
-        file = os.path.join(os.path.dirname(__file__), 'items.csv')
+        file = os.path.join(os.path.dirname(__file__), custom_file)
         try:
             with open(file, encoding='windows-1251') as csv_file:
                 reader = csv.DictReader(csv_file)
